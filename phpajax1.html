@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>根据前段select选中后端获取数据显示</title>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<form >
+	<select name='users' id='select' onchange="showSite(this.value)" >
+		<option value="">选中一个网站</option>
+		<option value="1">Google</option>
+		<option value="2">淘宝</option>
+		<option value="3">网易</option>
+		<option value="4">菜鸟</option>
+		<option value="5">微博</option>
+		<option value="6">Facebook</option>
+	</select>
+</form>
+<hr>
+<div id='txtHint'><b>网站信息显示在这里.......</b></div>
+<script>
+
+	function showSite(value){
+		$.ajax({
+			url:'ajaxphp.php',
+			type:'GET',
+			data:{
+				q:value
+			},
+			success:function(res){
+				
+				console.log(res);
+				
+				$("#txtHint").html(res);
+				
+			},
+			error:function(eor){
+				console.log(eor);
+			}
+			
+		})	
+	
+
+	}
+
+</script>
+
+
+
+</html>
+
